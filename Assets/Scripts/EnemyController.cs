@@ -10,7 +10,11 @@ public class EnemyController : MonoBehaviour
     [SerializeField]
     private GameObject _projectilePrefab;
     [SerializeField]
+    private GameObject _boosterPrefab;
+    [SerializeField]
     private float _movementSpeed = 2f;
+    [SerializeField]
+    private int _health = 1;
     
     private const float ProjectileForwardOffset = 0.5f;
     
@@ -23,10 +27,7 @@ public class EnemyController : MonoBehaviour
         StartCoroutine(SpawnProjectileCoroutine());
     }
     
-    void Update()
-    {
-        transform.Translate(_movementDirection * (_movementSpeed * Time.deltaTime));
-    }
+    void Update() => transform.Translate(_movementDirection * (_movementSpeed * Time.deltaTime));
     
     IEnumerator SpawnProjectileCoroutine()
     {
@@ -48,12 +49,21 @@ public class EnemyController : MonoBehaviour
 
     private void OnDestroy()
     {
+        Instantiate(_boosterPrefab, transform.position, _boosterPrefab.transform.rotation);
         OnDeath?.Invoke();
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag(EditorTags.PlayerProjectile))
-            Destroy(gameObject);
+        if (other.CompareTag(EditorTags.PlayerProjectile))
+        {
+            _health--;
+            Destroy(other.gameObject);
+            
+            if (_health <= 0)
+            {
+                Destroy(gameObject);
+            }
+        }
     }
 }
