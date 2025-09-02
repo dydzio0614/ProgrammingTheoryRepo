@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4141336084138949988}
   - component: {fileID: 2163196981267578870}
   - component: {fileID: 106179923002562437}
+  - component: {fileID: -3854106269584435229}
   m_Layer: 0
   m_Name: ChargingEnemy
   m_TagString: Untagged
@@ -126,3 +127,31 @@ MonoBehaviour:
   _boosterPrefab: {fileID: 1489212000486675362, guid: 96f75744f099988aaabb03c23dd6f233, type: 3}
   _movementSpeed: 5
   _health: 1
+  _chargeSpeed: 12
+--- !u!54 &-3854106269584435229
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7614478798662055058}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
