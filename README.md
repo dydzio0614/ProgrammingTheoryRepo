@@ -1,4 +1,4 @@
-# Personal Project
+# Programming Theory Repo
 
 Nothing interesting, just taking an unfinished project and quickly adjusting it for https://learn.unity.com/pathway/junior-programmer/unit/apply-object-oriented-principles/tutorial/submission-programming-theory-in-action
 
