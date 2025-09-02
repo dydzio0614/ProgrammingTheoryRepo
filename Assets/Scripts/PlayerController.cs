@@ -7,8 +7,12 @@ public class PlayerController : MonoBehaviour
     private GameObject _projectilePrefab;
     [SerializeField]
     private float _movementSpeed = 10f;
+    [SerializeField]
+    private float _health = 20f;
     
     private const float ProjectileForwardOffset = 0.5f;
+    
+    private static PlayerController _instance;
     
     private Rigidbody _rigidbody;
     private InputSystemActions _inputSystemActions;
@@ -16,8 +20,16 @@ public class PlayerController : MonoBehaviour
     private Vector2 _movementInput;
     private Vector3 _displaySize;
     
+    public static PlayerController Instance => _instance; // ENCAPSULATION
+    
     private void Awake()
     {
+        if(_instance != null)
+            Destroy(gameObject);
+        
+        _instance = this;
+        DontDestroyOnLoad(gameObject);
+        
         _rigidbody = GetComponent<Rigidbody>();
         _displaySize = GetComponent<Renderer>().bounds.size;
         _inputSystemActions = new InputSystemActions();
@@ -47,5 +59,15 @@ public class PlayerController : MonoBehaviour
     private void OnDestroy()
     {
         _inputSystemActions.Dispose();
+    }
+
+    public void DealDamage() // ABSTRACTION
+    {
+        _health--;
+        
+        if (_health <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 }

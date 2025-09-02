@@ -3,42 +3,38 @@ using System.Collections;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class EnemyController : MonoBehaviour
+public abstract class Enemy : MonoBehaviour
 {
     public event Action OnDeath;
     
     [SerializeField]
-    private GameObject _projectilePrefab;
+    protected GameObject _boosterPrefab;
     [SerializeField]
-    private GameObject _boosterPrefab;
+    protected float _movementSpeed = 2f;
     [SerializeField]
-    private float _movementSpeed = 2f;
-    [SerializeField]
-    private int _health = 1;
-    
-    private const float ProjectileForwardOffset = 0.5f;
+    protected int _health = 1;
+
+    protected bool _isMoving = true;
     
     private Vector3 _movementDirection;
+    
     
     void Start()
     {
         _movementDirection = transform.right;
         StartCoroutine(MovementDirectionSwapCoroutine());
-        StartCoroutine(SpawnProjectileCoroutine());
-    }
-    
-    void Update() => transform.Translate(_movementDirection * (_movementSpeed * Time.deltaTime));
-    
-    IEnumerator SpawnProjectileCoroutine()
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(Random.Range(3f, 7f));
-            Instantiate(_projectilePrefab, transform.position + transform.forward * ProjectileForwardOffset, transform.rotation);
-        }
+        StartCoroutine(AttackBehaviorLoop());
     }
 
-    IEnumerator MovementDirectionSwapCoroutine()
+    protected abstract IEnumerator AttackBehaviorLoop(); // POLYMORPHISM
+
+    protected virtual void Update()
+    {
+        if(_isMoving)
+            transform.Translate(_movementDirection * (_movementSpeed * Time.deltaTime));
+    }
+
+    protected IEnumerator MovementDirectionSwapCoroutine()
     {
         while (true)
         {
@@ -53,7 +49,7 @@ public class EnemyController : MonoBehaviour
         OnDeath?.Invoke();
     }
 
-    private void OnTriggerEnter(Collider other)
+    protected virtual void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag(EditorTags.PlayerProjectile))
         {

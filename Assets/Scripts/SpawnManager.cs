@@ -1,10 +1,11 @@
 using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class SpawnManager : MonoBehaviour
 {
     [SerializeField]
-    private GameObject _enemyPrefab;
+    private GameObject[] _enemyPrefabs;
 
     private const float WaveSpawnUpperMargin = 1f;
     private const float EnemyHorizontalSpacing = 2f;
@@ -24,17 +25,17 @@ public class SpawnManager : MonoBehaviour
             SpawnEnemies();
     }
 
-    private void SpawnEnemies()
+    private void SpawnEnemies() // ABSTRACTION
     {
-        float spawnPositionX = UnityEngine.Random.Range(PersistentData.Instance.LeftPlayAreaBound, (PersistentData.Instance.LeftPlayAreaBound + PersistentData.Instance.RightPlayAreaBound) / 2);
+        float spawnPositionX = Random.Range(PersistentData.Instance.LeftPlayAreaBound, (PersistentData.Instance.LeftPlayAreaBound + PersistentData.Instance.RightPlayAreaBound) / 2);
         float spawnPositionZ = PersistentData.Instance.UpperPlayAreaBound - WaveSpawnUpperMargin;
 
         _waveCounter++;
         
         for (int i = 0; i < _waveCounter; i++)
         {
-            GameObject newEnemy = Instantiate(_enemyPrefab, new Vector3(spawnPositionX + i * EnemyHorizontalSpacing, 0, spawnPositionZ), _rotationTowardsBottom);
-            newEnemy.GetComponent<EnemyController>().OnDeath += () => _enemyCounter--;
+            GameObject newEnemy = Instantiate(_enemyPrefabs[Random.Range(0, _enemyPrefabs.Length)], new Vector3(spawnPositionX + i * EnemyHorizontalSpacing, 0, spawnPositionZ), _rotationTowardsBottom);
+            newEnemy.GetComponent<Enemy>().OnDeath += () => _enemyCounter--;
             _enemyCounter++;
         }
     }

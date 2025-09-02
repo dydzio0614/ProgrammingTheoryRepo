@@ -579,7 +579,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2756e3edb60afdbfdbadaec7d4bb10d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyPrefab: {fileID: 4685003325254885920, guid: 6271a78e41ffd8487ba0bf66897f9852, type: 3}
+  _enemyPrefabs:
+  - {fileID: 4685003325254885920, guid: 6271a78e41ffd8487ba0bf66897f9852, type: 3}
+  - {fileID: 7614478798662055058, guid: 04402e3a955e5a88fa0b1a08ade89474, type: 3}
 --- !u!1 &1969652398
 GameObject:
   m_ObjectHideFlags: 0
@@ -749,6 +751,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _projectilePrefab: {fileID: 339974054835096092, guid: 10350a7169b4184bda174163becbf416, type: 3}
   _movementSpeed: 10
+  _health: 20
 --- !u!54 &2029757679
 Rigidbody:
   m_ObjectHideFlags: 0

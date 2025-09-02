@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 3152453112103428690}
   - component: {fileID: 5103767732248051617}
   - component: {fileID: 9065646175531574707}
-  - component: {fileID: 5192281424472972581}
   - component: {fileID: 799679068055083154}
+  - component: {fileID: 5408495946938566427}
   m_Layer: 0
-  m_Name: Alien
+  m_Name: ShootingAlien
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -110,21 +110,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5192281424472972581
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4685003325254885920}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec223c60f60ce47f6938b338ca2a558f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _projectilePrefab: {fileID: 339974054835096092, guid: 53e27d174f5b7d5c4a8d0a9c058050ca, type: 3}
-  _boosterPrefab: {fileID: 1489212000486675362, guid: 96f75744f099988aaabb03c23dd6f233, type: 3}
-  _movementSpeed: 2
 --- !u!54 &799679068055083154
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -152,3 +137,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &5408495946938566427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4685003325254885920}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e09d55827e0fa6a4afd881ad2ec85d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _boosterPrefab: {fileID: 1489212000486675362, guid: 96f75744f099988aaabb03c23dd6f233, type: 3}
+  _movementSpeed: 2
+  _health: 1
+  _projectilePrefab: {fileID: 339974054835096092, guid: 53e27d174f5b7d5c4a8d0a9c058050ca, type: 3}
